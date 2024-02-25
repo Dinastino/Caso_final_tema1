@@ -21,10 +21,31 @@ public class Main {
 
             CronometroCosmico cronometro = new CronometroCosmico();
             System.out.println(cronometro);
-            System.out.println("---------------------------------------------");
-
 
             System.out.println("---------------------------------------------");
+
+            Scanner scanner2 = new Scanner(System.in);
+
+            System.out.println("Ingrese la cantidad de agua disponible (en litros):");
+            double aguaDisponible = scanner2.nextDouble();
+            System.out.println("Ingrese la cantidad de oxígeno disponible (en m3):");
+            double oxigenoDisponible = scanner2.nextDouble();
+            System.out.println("Ingrese la cantidad de comida disponible (en kg):");
+            double comidaDisponible = scanner2.nextDouble();
+            System.out.println("Ingrese la cantidad de combustible disponible (en litros):");
+            double combustibleDisponible = scanner2.nextDouble();
+            Recursos_Suministros recursos = new Recursos_Suministros(aguaDisponible, oxigenoDisponible, comidaDisponible,
+                    combustibleDisponible);
+
+            double[] consumoDiario = {10, 5, 3, 15}; // Consumo diario de agua, oxígeno, comida y combustible respectivamente
+            int periodos = 5;
+
+            recursos.mostrarRecursos(consumoDiario, periodos);
+
+            scanner.close();
+
+            System.out.println("---------------------------------------------");
+
             Alerta_monitoreo alerta = new Alerta_monitoreo();
             alerta.actualizarNivelRadiacion(150);
             alerta.actualizarTemperatura(45);
@@ -69,12 +90,19 @@ public class Main {
 
             System.out.println("---------------------------------------------");
 
+            Navegador_estelar navegador = new Navegador_estelar(4, 4);
+            navegador.visualizar();
+            navegador.planificarConstruccion(1, 1, 2);
+            navegador.planificarConstruccion(3, 3, 3);
+            navegador.visualizar();
+            navegador.calcularRutaOptima();
 
+            System.out.println("---------------------------------------------");
 
+            Comunicador_interplanetario comunicador = new Comunicador_interplanetario();
+            comunicador.iniciar();
 
-
-
-
+            System.out.println("---------------------------------------------");
 
         } else {
             System.out.println("Usuario o contraseña incorrectos");
