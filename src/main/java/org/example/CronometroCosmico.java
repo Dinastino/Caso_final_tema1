@@ -40,10 +40,10 @@ public class CronometroCosmico {
 
     @Override
     public String toString() {
-        return "CronometroCosmico{" +
-                "fechaTierra=" + fechaTierra +
-                "\n, fechaOtroPlaneta=" + fechaOtroPlaneta +
-                '}';
+        return "CronometroCosmico{\n" +
+                "fechaTierra= " + fechaTierra +
+                "\nfechaOtroPlaneta= " + fechaOtroPlaneta +
+                "\n}";
     }
 
 
