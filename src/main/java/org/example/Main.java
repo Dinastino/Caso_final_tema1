@@ -61,7 +61,7 @@ public class Main {
             String nombreMiembro;
             while (true) {
                 System.out.print("Nombre del miembro: ");
-                nombreMiembro = scanner1.nextLine();
+                nombreMiembro = scannNer1.nextLine();
                 if (nombreMiembro.equalsIgnoreCase("fin")) {
                     break;
                 }
