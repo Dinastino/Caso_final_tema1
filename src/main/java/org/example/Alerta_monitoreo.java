@@ -6,25 +6,32 @@ public class Alerta_monitoreo {
     private double nivelRadiacion;
     private double temperatura;
     private double presion;
+    private ArrayList<String> eventosCriticos;
+    private int contadorEventos;
 
     public Alerta_monitoreo() {
         // Inicialización de variables
         this.nivelRadiacion = 0.0;
         this.temperatura = 0.0;
         this.presion = 0.0;
+        this.eventosCriticos = new ArrayList<>();
+        this.contadorEventos = 0;
     }
 
 
     public void actualizarNivelRadiacion(double nivelRadiacion) {
         this.nivelRadiacion = nivelRadiacion;
+        verificarValoresExtremos();
     }
 
     public void actualizarTemperatura(double temperatura) {
         this.temperatura = temperatura;
+        verificarValoresExtremos();
     }
 
     public void actualizarPresion(double presion) {
         this.presion = presion;
+        verificarValoresExtremos();
     }
 
     // Método para verificar y alertar sobre valores extremos
@@ -33,12 +40,15 @@ public class Alerta_monitoreo {
             System.out.println("¡Alerta! Se han detectado valores extremos:");
             if (nivelRadiacion > 100) {
                 System.out.println("   - Nivel de radiación: " + nivelRadiacion);
+                registrarEvento("Nivel de radiación alto: " + nivelRadiacion);
             }
             if (temperatura > 40) {
                 System.out.println("   - Temperatura: " + temperatura);
+                registrarEvento("Temperatura alta: " + temperatura);
             }
             if (presion > 120) {
                 System.out.println("   - Presión: " + presion);
+                registrarEvento("Presión alta: " + presion);
             }
             // Aquí podrías agregar lógica para sugerir ajustes
         } else {
@@ -46,30 +56,24 @@ public class Alerta_monitoreo {
         }
     }
 
-    // Método para identificar y listar los N primeros números primos
-    public ArrayList<Integer> encontrarPrimos(int n) {
-        ArrayList<Integer> primos = new ArrayList<>();
-        int num = 2;
-        while (primos.size() < n) {
-            if (esPrimo(num)) {
-                primos.add(num);
-            }
-            num++;
+    // Método para registrar eventos críticos
+    private void registrarEvento(String evento) {
+        if (contadorEventos < 5) {
+            eventosCriticos.add(evento);
+            contadorEventos++;
         }
-        return primos;
     }
 
-    // Método auxiliar para verificar si un número es primo
-    private boolean esPrimo(int num) {
-        if (num <= 1) {
-            return false;
-        }
-        for (int i = 2; i <= Math.sqrt(num); i++) {
-            if (num % i == 0) {
-                return false;
+    public void listarEventosCriticos() {
+        if (eventosCriticos.isEmpty()) {
+            System.out.println("No se han registrado eventos críticos.");
+        } else {
+            System.out.println("Listado de eventos críticos:");
+            for (String evento : eventosCriticos) {
+                System.out.println(" - " + evento);
             }
         }
-        return true;
     }
 }
+
 
